@@ -1,9 +1,9 @@
 FROM python:3.7-alpine
 
-# Install bash
+# Install bash and utils for paramiko
 # Create user and home directory
 # Create base directory
-RUN apk add --no-cache bash build-base libstdc++ &&\
+RUN apk add --no-cache bash build-base libstdc++ libffi-dev openssl-dev python3-dev &&\
     adduser -u 1000 -S -h /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
