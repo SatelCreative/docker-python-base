@@ -7,11 +7,16 @@ RUN apk add --no-cache bash build-base libstdc++ &&\
     adduser -u 1000 -S -h /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
+# Copy the requirements
+COPY requirements.txt /python
+
+RUN pip install -r /python/requirements.txt
+
 # Change users
 USER python
 
-# Create base app directory
-RUN mkdir /python/app
+# Create base all useful directory
+RUN mkdir /python/app /python/logs /python/files /python/static
 
 # Change directory
 WORKDIR /python/app
