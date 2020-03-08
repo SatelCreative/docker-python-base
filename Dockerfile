@@ -8,9 +8,9 @@ RUN apk add --no-cache bash build-base libstdc++ &&\
     mkdir -p /python && chown python:nogroup /python
 
 # Copy the requirements
-COPY requirements.txt /tmp
+COPY requirements.txt /python
 
-RUN pip install -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
+RUN pip install -r /python/requirements.txt
 
 # Change users
 USER python
