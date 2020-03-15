@@ -18,7 +18,7 @@ h11==0.9.0
 h2==3.2.0
 hiredis==1.0.1
 hpack==3.0.0
-hstspreload==2020.2.21
+hstspreload==2020.3.12
 httptools==0.1.1
 httpx==0.11.1
 hyperframe==5.2.0
