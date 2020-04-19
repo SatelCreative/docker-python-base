@@ -44,7 +44,7 @@ pluggy==0.13.1
 promise==2.3
 py==1.8.1
 pycodestyle==2.5.0
-pydantic==1.4
+pydantic==1.5
 pyflakes==2.1.1
 PyJWT==1.7.1
 pymongo==3.10.1
