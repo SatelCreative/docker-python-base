@@ -1,4 +1,4 @@
-FROM python:3.7.4-alpine
+FROM python:3.8.3-alpine
 
 # Install bash
 # Create user and home directory
