@@ -1,9 +1,10 @@
-FROM python:3.7.4-alpine
+FROM python:3.8.3-alpine3.12
 
 # Install bash
 # Create user and home directory
 # Create base directory
-RUN apk add --no-cache bash build-base libstdc++ &&\
+RUN apk add --no-cache bash build-base libstdc++ git less openssh &&\
+    rm -rf /var/lib/apt/lists/* &&\
     adduser -u 1000 -S -h /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
