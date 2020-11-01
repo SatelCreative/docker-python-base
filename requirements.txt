@@ -74,7 +74,7 @@ pytest==6.0.1
 pytest-asyncio==0.14.0
 pytest-cov==2.10.1
 pytest-mock==3.2.0
-python-box==5.1.0
+python-box==5.2.0
 python-dateutil==2.8.1
 python-multipart==0.0.5
 python-slugify==4.0.1
