@@ -43,7 +43,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 mkautodoc==0.1.0
 mkdocs==1.1.2
-mkdocs-material==5.5.7
+mkdocs-material==6.2.3
 mkdocs-material-extensions==1.0
 more-itertools==8.4.0
 motor==2.2.0
