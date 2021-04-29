@@ -1,0 +1,58 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: sunday
+    time: "13:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: graphql-core
+    versions:
+    - ">= 3.1.a, < 3.2"
+  - dependency-name: mkdocs-material
+    versions:
+    - 6.2.5
+    - 6.2.7
+    - 6.2.8
+    - 7.0.3
+    - 7.0.4
+    - 7.0.6
+    - 7.0.7
+    - 7.1.0
+    - 7.1.1
+    - 7.1.2
+  - dependency-name: pandas
+    versions:
+    - 1.2.1
+    - 1.2.2
+    - 1.2.3
+  - dependency-name: httpcore
+    versions:
+    - 0.12.2
+    - 0.12.3
+  - dependency-name: openpyxl
+    versions:
+    - 3.0.6
+  - dependency-name: pytest-mock
+    versions:
+    - 3.5.1
+  - dependency-name: starlette
+    versions:
+    - 0.14.1
+  - dependency-name: python-box
+    versions:
+    - 5.2.0
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: python
+    versions:
+    - 3.9.1.pre.alpine3.12
+    - 3.9.2.pre.alpine3.12
+    - 3.9.3.pre.alpine3.12
