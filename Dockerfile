@@ -19,8 +19,16 @@ RUN apt-get update -yqq &&\
     useradd -u 1000 -ms /bin/bash -d /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
-# Copy the requirements
-COPY requirements.txt /python
+# Copy the needed files
+COPY entrypoint.sh testsuite.sh requirements.txt /python/
+
+ENTRYPOINT ["/python/entrypoint.sh"]
+
+# Add convenient aliases
+RUN echo "alias startapp='/python/entrypoint.sh startapp'" >> ~/.bashrc\
+    echo "alias validatecode='/python/entrypoint.sh validatecode'" >> ~/.bashrc\
+    echo "alias developapp='/python/entrypoint.sh developapp'" >> ~/.bashrc\
+    echo "alias runtests='/python/entrypoint.sh runtests'" >> ~/.bashrc
 
 RUN pip install -r /python/requirements.txt
 
