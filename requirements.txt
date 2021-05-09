@@ -39,7 +39,7 @@ joblib==1.0.1
 jsonschema==3.2.0
 livereload==2.6.3
 loguru==0.5.3
-lunr==0.5.8
+lunr==0.6.0
 Markdown==3.3.4
 MarkupSafe==1.1.1
 mccabe==0.6.1
