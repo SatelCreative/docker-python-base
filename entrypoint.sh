@@ -17,30 +17,30 @@ loadconfig() {
   fi
 }
 
+executeapp() {
+  uvicorncom=$1
 
-startapp() {
-  loadconfig
-
-  appcommand="webapp.main:app"
-  if [[ -n ${1} ]]
+  applocation="webapp.main:app"
+  if [[ -n ${2} ]]
   then
-    appcommand=$1
+    applocation=$2
   fi
 
-  uvicorn --host 0.0.0.0 --port 8000 $appcommand
+  loadconfig
+
+  exec $uvicorncom $applocation
+}
+
+
+startapp() {
+  echo "Run app in PRODUCTION mode"
+  executeapp "uvicorn --host 0.0.0.0 --port 8000" $1
 }
 
 
 developapp() {
-  loadconfig
-
-  appcommand="webapp.main:app"
-  if [[ -n ${1} ]]
-  then
-    appcommand=$1
-  fi
-
-  watchmedo auto-restart --patterns="*.py;*.txt;*.yml" --recursive uvicorn -- --host 0.0.0.0 $appcommand
+  echo "Run app in DEVELOPMENT mode"
+  executeapp "watchmedo auto-restart --patterns=\"*.py;*.txt;*.yml\" --recursive uvicorn -- --host 0.0.0.0" $1
 }
 
 
@@ -54,6 +54,7 @@ validatecode() {
 
 
 runtests() {
+  echo "Run pytest and output XML report files"
   loadconfig
 
   if [ -f ./coverage.conf ];
@@ -65,8 +66,6 @@ runtests() {
 }
 
 
-echo "Command: $1"
-
 case "$1" in
   startapp|developapp|validatecode|runtests)
     # Run the identified command and the provided arguments
@@ -74,7 +73,7 @@ case "$1" in
     ;;
   *)
     # Just run any command past to the docker
-    echo "EXEC $@"
+    echo "Execute this in bash: $@"
     exec "$@"
     ;;
 esac
