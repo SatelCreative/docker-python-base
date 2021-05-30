@@ -11,7 +11,7 @@ chardet==4.0.0
 click==7.1.2
 coverage==5.5
 dnspython==2.1.0
-ecdsa==0.14.1
+ecdsa==0.17.0
 email-validator==1.1.2
 entrypoints==0.3
 et-xmlfile==1.1.0
