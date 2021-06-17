@@ -47,8 +47,7 @@ developapp() {
 validatecode() {
   echo -e "\nREADY TO RUN THE CODE VALIDATION SUITE\nSave a python file to trigger the checks."
   
-  source config.sh
-  source config_test.sh
+  loadconfig
   watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh" --drop .
 }
 

@@ -31,3 +31,5 @@ WORKDIR /python/app
 ENV PYTHONUSERBASE /home/python
 ENV PATH $PATH:/home/python/bin
 ENV PYTHONPATH /python/app
+
+CMD ["startapp"]
