@@ -70,7 +70,7 @@ the `mypy` typing check and the `flake8` linting check whenever the code changes
 The `flake8` linting includes `isort` import module sorting thanks to the `flake8-isort`
 plugin.
 
-This code validation command executes the `/python/testsuite.sh` script which can
+This code validation command executes the `/python/test_suite.sh` script which can
 be overwritten with custom code validation.
 
 ### runtests

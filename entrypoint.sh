@@ -49,7 +49,7 @@ validatecode() {
   
   source config.sh
   source config_test.sh
-  watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/testsuite.sh" --drop .
+  watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh" --drop .
 }
 
 

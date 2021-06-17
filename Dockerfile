@@ -6,7 +6,7 @@ RUN useradd -u 1000 -ms /bin/bash -d /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
 # Copy the needed files
-COPY entrypoint.sh testsuite.sh requirements.txt /python/
+COPY entrypoint.sh test_suite.sh requirements.txt /python/
 
 ENTRYPOINT ["/python/entrypoint.sh"]
 
