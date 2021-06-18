@@ -7,6 +7,26 @@ The standard packages we use in most projects are already installed.
 The folder structure and commands provide the standard framework for development
 and deployment to production of the app.
 
+## Migration to version 4
+
+The version 4 comes with significant changes:
+
+* The docker base image was changed from alpine to slim buster
+    * All the `apk add` commands need to be replaced with equivalent `apt-get` commands
+    * slim buster has more base packages such as bash so probably less installation
+      of system packages is needed
+* The entrypoint now provides standard commands to run and test the webapp
+    * No `CMD` is necessary for production as `startapp` is the default
+    * In development, run the `developapp` command
+    * See below for testing
+* A `config.sh` is expected where environment variables for configuration purposes
+  can be defined
+* The `requirements.txt` has been reduced to the base and development python packages
+    * Base packages such as FastAPI, pydantic, loguru, ...
+    * Development pacakages such as watchmedo, pytest, mypy, ...
+    * Therefore you need to add to your requirements file packages such as pandas
+      that were included in this image in versions prior to 4
+
 ## Folder structure
 
 The `/python` folder is the base folder for all the files of this images
@@ -30,9 +50,17 @@ These commands are effectively run as arguments of the entrypoint such as:
 The `.bashrc` file contains aliases so that one can also just call `startapp`
 from within the docker container.
 
+**NOTE**: If you want to run a bash command, just pass it to the docker container
+and it will be executed since it doesn't match one of the predefined commands.
+Example here running the `ls` command:
+
+```bash
+docker run satel/python-base:latest ls
+```
+
 ### startapp
 
-Run the app in production mode.
+Run the app in production mode. *This is the default `CMD` is none is provided*.
 The app is expected to be a FastAPI `app` defined in `/python/app/webapp/main.py`
 such that the app is executed with the command:
 ```bash
