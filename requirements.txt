@@ -10,7 +10,7 @@ fastapi==0.65.1
 flake8==3.9.2
 flake8-isort==4.0.0
 h11==0.12.0
-httpcore==0.13.3
+httpcore==0.13.6
 httpx==0.18.1
 idna==2.10
 iniconfig==1.1.1
