@@ -2,7 +2,8 @@ FROM python:3.9.5-slim
 
 # Create user and home directory
 # Create base directory
-RUN useradd -u 1000 -ms /bin/bash -d /home/python python &&\
+RUN apt-get update && apt-get upgrade -y &&\
+    useradd -u 1000 -ms /bin/bash -d /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
 # Copy the needed files
