@@ -13,17 +13,17 @@ ENTRYPOINT ["/python/entrypoint.sh"]
 
 # Add convenient aliases
 # Install python packages
-RUN echo "alias startapp='/python/entrypoint.sh startapp'" >> ~/.bashrc &&\
-    echo "alias validatecode='/python/entrypoint.sh validatecode'" >> ~/.bashrc &&\
-    echo "alias developapp='/python/entrypoint.sh developapp'" >> ~/.bashrc &&\
-    echo "alias runtests='/python/entrypoint.sh runtests'" >> ~/.bashrc &&\
-    pip install -r /python/requirements.txt
+RUN pip install -r /python/requirements.txt
 
 # Change users
 USER python
 
 # Create base all useful directory
-RUN mkdir /python/app /python/logs /python/files /python/static
+RUN echo "alias startapp='/python/entrypoint.sh startapp'" >> ~/.bashrc &&\
+    echo "alias validatecode='/python/entrypoint.sh validatecode'" >> ~/.bashrc &&\
+    echo "alias developapp='/python/entrypoint.sh developapp'" >> ~/.bashrc &&\
+    echo "alias runtests='/python/entrypoint.sh runtests'" >> ~/.bashrc &&\
+    mkdir /python/app /python/logs /python/files /python/static
 
 # Change directory
 WORKDIR /python/app
