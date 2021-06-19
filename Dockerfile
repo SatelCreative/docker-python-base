@@ -28,8 +28,8 @@ RUN mkdir /python/app /python/logs /python/files /python/static
 WORKDIR /python/app
 
 # Install packages in python home directory
-ENV PYTHONUSERBASE /home/python
-ENV PATH $PATH:/home/python/bin
-ENV PYTHONPATH /python/app
+ENV PYTHONUSERBASE=/home/python \
+    PATH=$PATH:/home/python/bin \
+    PYTHONPATH=/python/app
 
 CMD ["startapp"]
