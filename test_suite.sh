@@ -12,7 +12,7 @@ reportvalidation() {
 }
 
 
-python -m pytest -vv --durations=3 --cov=spylib --cov-report term-missing
+python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing
 
 echo -ne "\n######### CHECK TYPING: "
 MYPYOUT=`mypy --no-error-summary .`
