@@ -38,7 +38,7 @@ shortuuid==1.0.1
 six==1.16.0
 sniffio==1.2.0
 starlette==0.14.2
-tenacity==7.0.0
+tenacity==8.0.0
 testfixtures==6.17.1
 toml==0.10.2
 typed-ast==1.4.3
