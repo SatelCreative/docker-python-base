@@ -6,7 +6,7 @@ certifi==2021.5.30
 chardet==4.0.0
 click==8.0.1
 coverage==5.5
-fastapi==0.65.2
+fastapi==0.66.0
 flake8==3.9.2
 flake8-isort==4.0.0
 h11==0.12.0
