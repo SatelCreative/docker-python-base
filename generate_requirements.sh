@@ -18,6 +18,7 @@ pip install \
   flake8               `# Linting`\
   isort                `# Utility to sort and organize imports into sections and types`\
   flake8-isort         `# Plugin to run isort as part of the linting`\
+  flake8-quotes        `# Plugin to enforce specific quotes convention, which PEP8 doesn't`\
   black                `# Formatting`\
   shortuuid            `# Utility to generate UUIDs`\
   requests httpx       `# HTTP libraries. Requests might be remove in the future`\
