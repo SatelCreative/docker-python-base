@@ -1,8 +1,9 @@
-FROM python:3.9.5-slim
+FROM python:3.9.6-slim
 
 # Create user and home directory
 # Create base directory
 RUN apt-get update && apt-get upgrade -y &&\
+    apt-get install git &&\
     useradd -u 1000 -ms /bin/bash -d /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
