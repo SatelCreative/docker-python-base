@@ -51,6 +51,13 @@ validatecode() {
   watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh" --drop .
 }
 
+validatecodeonce() {
+  echo -e "\nTriggering single run of code validation."
+  
+  loadconfig
+  ../test_suite.sh
+}
+
 
 runtests() {
   echo "Run pytest and output XML report files"
@@ -67,7 +74,7 @@ runtests() {
 
 
 case "$1" in
-  startapp|developapp|validatecode|runtests)
+  startapp|developapp|validatecode|validatecodeonce|runtests)
     # Run the identified command and the provided arguments
     $@
     ;;
