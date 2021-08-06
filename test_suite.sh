@@ -12,18 +12,18 @@ reportvalidation() {
 }
 
 
-python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing
+python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing; STATUS1=$?
 
 echo -ne "\n######### CHECK TYPING: "
 MYPYOUT=`mypy --no-error-summary .`
-reportvalidation "$MYPYOUT"
+reportvalidation "$MYPYOUT"; STATUS2=$?
 
 echo -ne "\n######### CHECK LINTING: "
 FLAKE8OUT=`flake8`
-reportvalidation "$FLAKE8OUT"
+reportvalidation "$FLAKE8OUT"; STATUS3=$?
 
 echo -ne "\n######### CHECK FORMATTING: "
-BLACKOUT=`black ./ --check 2>&1`
+BLACKOUT=`black --skip-string-normalization ./ --check 2>&1`; STATUS4=$?
 if [[ $BLACKOUT == "All done!"* ]]
 then
   echo "OK"
@@ -33,3 +33,6 @@ else
 fi
 
 echo
+
+TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4))
+exit $TOTAL
