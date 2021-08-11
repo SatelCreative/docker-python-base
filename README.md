@@ -7,6 +7,14 @@ The standard packages we use in most projects are already installed.
 The folder structure and commands provide the standard framework for development
 and deployment to production of the app.
 
+## Developing 
+
+There is a `dev.sh` script included that builds both docker images and runs
+one of 3 cases based on the parameter you pass in:
+1. `./dev.sh validate` runs the validation scripts (validatecodeonce)
+2. `./dev.sh run` runs the main application.
+3. `./dev.sh cli` drops you into the cli for the image
+
 ## Migration to version 4
 
 The version 4 comes with significant changes:
