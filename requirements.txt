@@ -49,5 +49,5 @@ toml==0.10.2
 tomli==1.1.0
 typing-extensions==3.10.0.0
 urllib3==1.26.6
-uvicorn==0.14.0
+uvicorn==0.15.0
 watchdog==2.1.3
