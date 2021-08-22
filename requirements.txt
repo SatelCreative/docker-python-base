@@ -44,7 +44,7 @@ shortuuid==1.0.1
 sniffio==1.2.0
 starlette==0.14.2
 tenacity==8.0.1
-testfixtures==6.18.0
+testfixtures==6.18.1
 toml==0.10.2
 tomli==1.1.0
 typing-extensions==3.10.0.0
