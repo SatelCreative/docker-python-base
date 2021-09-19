@@ -5,7 +5,7 @@ asgiref==3.4.1
 attrs==21.2.0
 black==21.7b0
 certifi==2021.5.30
-charset-normalizer==2.0.3
+charset-normalizer==2.0.6
 click==8.0.1
 coverage==5.5
 fastapi==0.67.0
