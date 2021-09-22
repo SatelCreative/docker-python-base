@@ -1,8 +1,9 @@
-FROM python:3.9.5-slim
+FROM python:3.9.6-slim
 
 # Create user and home directory
 # Create base directory
-RUN useradd -u 1000 -ms /bin/bash -d /home/python python &&\
+RUN apt-get update && apt-get upgrade -y &&\
+    useradd -u 1000 -ms /bin/bash -d /home/python python &&\
     mkdir -p /python && chown python:nogroup /python
 
 # Copy the needed files
@@ -12,10 +13,11 @@ ENTRYPOINT ["/python/entrypoint.sh"]
 
 # Add convenient aliases
 # Install python packages
-RUN echo "alias startapp='/python/entrypoint.sh startapp'" >> ~/.bashrc &&\
-    echo "alias validatecode='/python/entrypoint.sh validatecode'" >> ~/.bashrc &&\
-    echo "alias developapp='/python/entrypoint.sh developapp'" >> ~/.bashrc &&\
-    echo "alias runtests='/python/entrypoint.sh runtests'" >> ~/.bashrc &&\
+RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod a+x /bin/startapp &&\
+    echo "#!/bin/bash\n/python/entrypoint.sh developapp" >> /bin/developapp && chmod a+x /bin/developapp &&\
+    echo "#!/bin/bash\n/python/entrypoint.sh validatecode" >> /bin/validatecode && chmod a+x /bin/validatecode &&\
+    echo "#!/bin/bash\n/python/entrypoint.sh validatecodeonce" >> /bin/validatecodeonce && chmod a+x /bin/validatecodeonce &&\
+    echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests &&\
     pip install -r /python/requirements.txt
 
 # Change users
@@ -28,6 +30,8 @@ RUN mkdir /python/app /python/logs /python/files /python/static
 WORKDIR /python/app
 
 # Install packages in python home directory
-ENV PYTHONUSERBASE /home/python
-ENV PATH $PATH:/home/python/bin
-ENV PYTHONPATH /python/app
+ENV PYTHONUSERBASE=/home/python \
+    PATH=$PATH:/home/python/bin \
+    PYTHONPATH=/python/app
+
+CMD ["startapp"]
