@@ -67,10 +67,9 @@ runtests() {
   then
     $covconf="--cov-config ./coverage.conf"
   fi
-  mkdir reports
   python -m pytest -vv --durations=3 --junitxml unittesting.xml --cov=. $covconf\
          --cov-report term-missing --cov-report xml:coverage.xml
-  mv *.xml reports/
+  mv *.xml /reports/
 }
 
 
