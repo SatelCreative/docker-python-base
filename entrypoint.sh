@@ -69,6 +69,7 @@ runtests() {
   fi
   python -m pytest -vv --durations=3 --junitxml unittesting.xml --cov=. $covconf\
          --cov-report term-missing --cov-report xml:coverage.xml
+  mv *.xml /python/reports/
 }
 
 
