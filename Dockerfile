@@ -1,4 +1,4 @@
-FROM python:3.10.0-slim
+FROM python:python:3.9.6-slim
 
 # Create user and home directory
 # Create base directory
