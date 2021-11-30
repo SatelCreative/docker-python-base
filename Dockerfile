@@ -24,7 +24,7 @@ RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod
 USER python
 
 # Create base directories
-RUN mkdir /python/app /python/logs /python/files /python/static /reports
+RUN mkdir /python/app /python/logs /python/files /python/static /python/reports
 
 # Change directory
 WORKDIR /python/app
