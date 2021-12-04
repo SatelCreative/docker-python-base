@@ -66,7 +66,7 @@ Example here running the `ls` command:
 docker run satel/python-base:latest ls
 ```
 
-### startapp
+### `startapp`
 
 Run the app in production mode. *This is the default `CMD` is none is provided*.
 The app is expected to be a FastAPI `app` defined in `/python/app/webapp/main.py`
@@ -89,7 +89,7 @@ The command will try to load the `config.sh` from multiple locations:
    useful for CI/CD environments for which the example values are good enough to
    run the tests
 
-### developapp
+### `developapp`
 
 Run the app in development mode with `watchmedo` from the `watchdog` python package
 such that the app restarts whenever the code changes in `/python/app`.
@@ -98,7 +98,7 @@ as `startapp` are used for `developapp`.
 
 The configuration file is loaded the same way as in `startapp`.
 
-### validatecode
+### `validatecode`
 
 This command is used during development to automatically run the `pytest` tests,
 the `mypy` typing check and the `flake8` linting check whenever the code changes.
@@ -109,7 +109,16 @@ plugin.
 This code validation command executes the `/python/test_suite.sh` script which can
 be overwritten with custom code validation.
 
-### runtests
+### `validatecodeonce`
+
+Same as `validatecode` but executed once rather than continously running on
+code change.
+This can be used for CI/CD purposes since it generates report files in the `/python/reports`
+folder.
+
+### `runtests` (DEPRECATED)
+
+**DEPRECATED**: Use `validatecodeonce` instead
 
 This command runs only the `pytest` tests for CI/CD purposes. It outputs the tests
 and code coverage results in the `/python/app/unittesting.xml` and

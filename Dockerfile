@@ -1,4 +1,4 @@
-FROM python:3.9.6-slim
+FROM python:3.10.0-slim
 
 # Create user and home directory
 # Create base directory
@@ -23,8 +23,8 @@ RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod
 # Change users
 USER python
 
-# Create base all useful directory
-RUN mkdir /python/app /python/logs /python/files /python/static
+# Create base directories
+RUN mkdir /python/app /python/logs /python/files /python/static /python/reports
 
 # Change directory
 WORKDIR /python/app
