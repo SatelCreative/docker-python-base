@@ -55,7 +55,7 @@ validatecodeonce() {
   echo -e "\nTriggering single run of code validation."
   
   loadconfig
-  ../test_suite.sh
+  ../test_suite.sh reports
 }
 
 
