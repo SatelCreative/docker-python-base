@@ -1,4 +1,7 @@
-FROM python:3.10.0-slim
+ARG imageversion=python:3.10.0-slim
+FROM $imageversion
+
+ARG requirementsversion=3.10
 
 # Create user and home directory
 # Create base directory
@@ -7,7 +10,8 @@ RUN apt-get update && apt-get upgrade -y &&\
     mkdir -p /python && chown python:nogroup /python
 
 # Copy the needed files
-COPY entrypoint.sh test_suite.sh requirements.txt /python/
+COPY entrypoint.sh test_suite.sh /python/
+COPY requirements_${requirementsversion}.txt /python/requirements.txt
 
 ENTRYPOINT ["/python/entrypoint.sh"]
 
