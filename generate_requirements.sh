@@ -1,9 +1,6 @@
 #!/bin/bash
 
 
-virtualenv tmpENV
-source tmpENV/bin/activate
-
 pip install \
   fastapi              `# Web framework used for all our apps`\
   uvicorn              `# ASGI server`\
@@ -26,6 +23,3 @@ pip install \
 
 
 pip freeze > requirements.txt
-
-deactivate
-rm -fr tmpENV
