@@ -61,7 +61,7 @@ such as the `entrypoint.sh`. Then the subfolders organize the app files:
 Rather simple. Just run the following command at the root of the repo:
 
 ```bash
-docker-compose -f docker-compose.generate_requirements.yml up -d
+docker-compose -f docker-compose.generate_requirements.yml up
 ```
 
 ## :keyboard: Commands
