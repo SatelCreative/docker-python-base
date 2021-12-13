@@ -10,7 +10,7 @@ services:
     tty: true
 
   generate_requirements_3_9:
-    image: python:3.9.9-slim
+    image: python:3.9.6-slim
     command: "/generate_requirements.sh"
     volumes:
       - ./generate_requirements.sh:/generate_requirements.sh
