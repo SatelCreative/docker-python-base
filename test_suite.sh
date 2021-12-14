@@ -37,7 +37,7 @@ FLAKE8OUT=`flake8`
 reportvalidation "$FLAKE8OUT"; STATUS3=$?
 
 echo -ne "$SECTION_PREFIX CHECK FORMATTING: "
-BLACKOUT=`black --skip-string-normalization ./ --check 2>&1`; STATUS4=$?
+BLACKOUT=`black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS4=$?
 if [[ $BLACKOUT == "All done!"* ]]
 then
   echo "OK"
