@@ -66,6 +66,6 @@ jobs:
           tags: |
               satel/python-base:${{env.RELEASE_VERSION}}-python3.10
           build-args: |
-              IMAGE_VERSION=python:3.10.0-slim
+              IMAGE_VERSION=python:3.10.1-slim
               REQUIREMENTS_VERSION=3.10
           push: true
