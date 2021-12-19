@@ -17,23 +17,24 @@ reportvalidation() {
 if [[ $1 == "reports" ]]
 then
   MYPY_REPORTS="--junit-xml ${REPORTS_FOLDER}typing.xml"
-  if [ -f ./coverage.conf ];
-  then
-    $covconf="--cov-config ./coverage.conf"
-  fi
-  PYTEST_REPORTS="--junitxml ${REPORTS_FOLDER}unittesting.xml $covconf --cov-report xml:${REPORTS_FOLDER}coverage.xml"
+  PYTEST_REPORTS="--junitxml ${REPORTS_FOLDER}unittesting.xml --cov-report xml:${REPORTS_FOLDER}coverage.xml"
 fi
 
+COVERAGE_CONF="--cov-config /home/python/.coverage.conf"
+if [ -f ./coverage.conf ];
+then
+  COVERAGE_CONF="--cov-config ./coverage.conf"
+fi
 
 echo -ne "$SECTION_PREFIX RUN TESTS:\n\n"
-python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS; STATUS1=$?
+python -m pytest --rootdir=/python/app -vv --durations=3 --cov ./ --cov-report term-missing $COVERAGE_CONF $PYTEST_REPORTS; STATUS1=$?
 
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
-MYPYOUT=`mypy --no-error-summary . $MYPY_REPORTS`
+MYPYOUT=`mypy --cache-dir /home/python --no-error-summary . $MYPY_REPORTS`
 reportvalidation "$MYPYOUT"; STATUS2=$?
 
 echo -ne "$SECTION_PREFIX CHECK LINTING: "
-FLAKE8OUT=`flake8`
+FLAKE8OUT=`flake8 --append-config /home/python/.flake8 --append-config /python/app/.flake8`
 reportvalidation "$FLAKE8OUT"; STATUS3=$?
 
 echo -ne "$SECTION_PREFIX CHECK FORMATTING: "
