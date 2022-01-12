@@ -1,0 +1,3 @@
+[flake8]
+# FOR TEST PURPOSES ONLY
+extend-ignore = F401
