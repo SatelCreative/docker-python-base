@@ -4,6 +4,16 @@ REPORTS_FOLDER="/python/reports/"
 SECTION_PREFIX="\n#########"
 
 
+checkuser() {
+  WHOAMI=`whoami`
+  if [ "$WHOAMI" != "python" ]
+  then
+    echo "ERROR the user in the docker image is $WHOAMI instead or \"python\""
+    echo "Use the instruction \"USER python\" in your Dockerfile"
+  fi
+}
+
+
 reportvalidation() {
   if [ -z "$1" ]
   then
@@ -24,20 +34,23 @@ then
   PYTEST_REPORTS="--junitxml ${REPORTS_FOLDER}unittesting.xml $covconf --cov-report xml:${REPORTS_FOLDER}coverage.xml"
 fi
 
-
 echo -ne "$SECTION_PREFIX RUN TESTS:\n\n"
 python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS; STATUS1=$?
 
+echo -ne "$SECTION_PREFIX CHECK DOCKER USER IS PYTHON: "
+USEROUT=`checkuser`
+reportvalidation "$USEROUT"; STATUS2=$?
+
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
 MYPYOUT=`mypy --no-error-summary . $MYPY_REPORTS`
-reportvalidation "$MYPYOUT"; STATUS2=$?
+reportvalidation "$MYPYOUT"; STATUS3=$?
 
 echo -ne "$SECTION_PREFIX CHECK LINTING: "
 FLAKE8OUT=`flake8`
-reportvalidation "$FLAKE8OUT"; STATUS3=$?
+reportvalidation "$FLAKE8OUT"; STATUS4=$?
 
 echo -ne "$SECTION_PREFIX CHECK FORMATTING: "
-BLACKOUT=`black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS4=$?
+BLACKOUT=`black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS5=$?
 if [[ $BLACKOUT == "All done!"* ]]
 then
   echo "OK"
@@ -55,5 +68,5 @@ then
   echo
 fi
 
-TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4))
+TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4 + STATUS5))
 exit $TOTAL
