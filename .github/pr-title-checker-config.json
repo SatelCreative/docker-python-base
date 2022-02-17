@@ -4,12 +4,12 @@
         "color": "EEEEEE"
     },
     "CHECKS": {
-        "prefixes": ["fix: :rocket, :fire", "feat: "],
+        "prefixes": ["fix: :rocket:, :fire:", "feat: :sparkles:"],
         "ignoreLabels" : [""]
     },
     "MESSAGES": {
-        "success": "All OK",
-        "failure": "Failing CI test",
+        "success": "All is good",
+        "failure": "CI tests are failing ",
         "notice": ""
     }
 }
