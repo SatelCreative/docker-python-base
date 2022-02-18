@@ -4,7 +4,7 @@
        "color":"EEEEEE"
     },
     "CHECKS":{
-       "prefixes":[":rocket: , :fire:, :sparkles:"],
+       "prefixes":[":rocket:", ":fire:", ":sparkles:"],
        "ignoreLabels":[" "]
     },
     "MESSAGES":{
