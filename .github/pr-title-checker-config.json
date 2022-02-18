@@ -1,15 +1,15 @@
 {
-    "LABEL": {
-        "name": "Title requires formatting",
-        "color": "EEEEEE"
+    "LABEL":{
+       "name":"Title need formatting",
+       "color":"EEEEEE"
     },
-    "CHECKS": {
-        "prefixes": ["fix: :rocket, :fire", "feat: "],
-        "ignoreLabels" : [""]
+    "CHECKS":{
+       "prefixes":[":rocket: , :fire:, :sparkles:"],
+       "ignoreLabels":[" "]
     },
-    "MESSAGES": {
-        "success": "All OK",
-        "failure": "Failing CI test",
-        "notice": ""
+    "MESSAGES":{
+       "success":"All OK",
+       "failure":"Failing CI test",
+       "notice":""
     }
-}
+ }
