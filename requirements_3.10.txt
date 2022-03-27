@@ -19,7 +19,7 @@ iniconfig==1.1.1
 isort==5.10.1
 loguru==0.5.3
 mccabe==0.6.1
-mypy==0.910
+mypy==0.942
 mypy-extensions==0.4.3
 nest-asyncio==1.5.4
 packaging==21.3
