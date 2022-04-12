@@ -24,9 +24,6 @@ RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod
     echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests &&\
     pip install -r /python/requirements.txt
 
-# Copy standard configurations for code validation
-COPY pytest.ini .flake8 .isort.cfg .mypy.ini .coverage.conf /home/python/
-
 # Change users
 USER python
 
