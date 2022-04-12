@@ -40,7 +40,7 @@ jobs:
           tags: |
               satel/python-base:${{env.RELEASE_VERSION}}-python3.8
           build-args: |
-              IMAGE_VERSION=python:3.8.12-slim
+              IMAGE_VERSION=python:3.8.13-slim
               REQUIREMENTS_VERSION=3.8
           push: true
       
@@ -53,7 +53,7 @@ jobs:
           tags: |
               satel/python-base:${{env.RELEASE_VERSION}}-python3.9
           build-args: |
-              IMAGE_VERSION=python:3.9.9-slim
+              IMAGE_VERSION=python:3.9.12-slim
               REQUIREMENTS_VERSION=3.9
           push: true
       
@@ -66,6 +66,6 @@ jobs:
           tags: |
               satel/python-base:${{env.RELEASE_VERSION}}-python3.10
           build-args: |
-              IMAGE_VERSION=python:3.10.1-slim
+              IMAGE_VERSION=python:3.10.4-slim
               REQUIREMENTS_VERSION=3.10
           push: true

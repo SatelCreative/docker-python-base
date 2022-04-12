@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   generate_requirements_3_10:
-    image: python:3.10.1-slim
+    image: python:3.10.4-slim
     command: "/generate_requirements.sh"
     volumes:
       - ./generate_requirements.sh:/generate_requirements.sh
@@ -10,7 +10,7 @@ services:
     tty: true
 
   generate_requirements_3_9:
-    image: python:3.9.9-slim
+    image: python:3.9.12-slim
     command: "/generate_requirements.sh"
     volumes:
       - ./generate_requirements.sh:/generate_requirements.sh
@@ -18,7 +18,7 @@ services:
     tty: true
 
   generate_requirements_3_8:
-    image: python:3.8.12-slim
+    image: python:3.8.13-slim
     command: "/generate_requirements.sh"
     volumes:
       - ./generate_requirements.sh:/generate_requirements.sh
