@@ -51,12 +51,13 @@ for linting, formatting and other testing tools
 
 ### Upgrade python base image versions
 
-3 files need to be edited:
-
-* `docker-compose.generate_requirements.yml` to generate the requirements files.
-* `Dockerfile` to change the default base image version. This is used only for testing
-  while developing but better to keep it up to date.
-* `.github/workflows/docker_image.yml` to build and push the right images to docker hub.
+1. Go to docker hub to get the latest patch version for
+    the [python docker image](https://hub.docker.com/_/python/)
+2. Then 3 files need to be edited with the latest python minor or patch versions:
+    1. `docker-compose.generate_requirements.yml` to generate the requirements files.
+    1. `.github/workflows/docker_image.yml` to build and push the right images to docker hub.
+    1. `Dockerfile` to change the default base image version. This is used only for testing
+       while developing but better to keep it up to date.
 
 ### Upgrade the requirements files
 
