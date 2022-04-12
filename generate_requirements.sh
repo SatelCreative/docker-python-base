@@ -15,6 +15,7 @@ pip install \
   isort                `# Utility to sort and organize imports into sections and types`\
   flake8-isort         `# Plugin to run isort as part of the linting`\
   flake8-quotes        `# Plugin to enforce specific quotes convention, which PEP8 doesn't`\
+  flake8-print         `# Plugin to prevent the use of print statements`\
   black                `# Formatting`\
 
 
