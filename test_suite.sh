@@ -42,7 +42,7 @@ USEROUT=`checkuser`
 reportvalidation "$USEROUT"; STATUS2=$?
 
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
-MYPYOUT=`mypy --no-error-summary . $MYPY_REPORTS`
+MYPYOUT=`mypy --cache-dir /home/python --no-error-summary . $MYPY_REPORTS`
 reportvalidation "$MYPYOUT"; STATUS3=$?
 
 echo -ne "$SECTION_PREFIX CHECK LINTING: "
