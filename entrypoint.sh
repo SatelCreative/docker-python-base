@@ -73,8 +73,14 @@ runtests() {
 }
 
 
+interrogateverbose() {
+  echo "Verify docstring coverage"
+  interrogate -vv
+}
+
+
 case "$1" in
-  startapp|developapp|validatecode|validatecodeonce|runtests)
+  startapp|developapp|validatecode|validatecodeonce|runtests|interrogateverbose)
     # Run the identified command and the provided arguments
     $@
     ;;
