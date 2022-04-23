@@ -61,6 +61,10 @@ fi
 
 echo
 
+echo -ne "$SECTION_PREFIX CHECK DOCSTRINGS: "
+INTERROGATEOUT=`interrogate`
+reportvalidation "$INTERROGATEOUT"; STATUS5=$?
+
 if [[ $1 == "reports" ]]
 then
   echo -ne "$SECTION_PREFIX Report files created in $REPORTS_FOLDER\n"
@@ -68,5 +72,5 @@ then
   echo
 fi
 
-TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4 + STATUS5))
+TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4 + STATUS5 + STATUS6))
 exit $TOTAL

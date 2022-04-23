@@ -5,7 +5,7 @@ docker build . -t docker-python-base
 
 case $1 in
     run)
-        docker run -p 8000:8000 docker-python-base
+        docker run -p 8000:8000 docker-python-base $2
     ;;
 
     validate)
