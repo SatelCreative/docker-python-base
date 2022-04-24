@@ -23,7 +23,7 @@ mypy-extensions==0.4.3
 nest-asyncio==1.5.5
 packaging==21.3
 pathspec==0.9.0
-platformdirs==2.5.1
+platformdirs==2.5.2
 pluggy==1.0.0
 py==1.11.0
 pycodestyle==2.8.0
