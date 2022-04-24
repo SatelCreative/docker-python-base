@@ -42,6 +42,6 @@ tabulate==0.8.9
 testfixtures==6.18.5
 toml==0.10.2
 tomli==2.0.1
-typing_extensions==4.1.1
+typing_extensions==4.2.0
 uvicorn==0.17.6
 watchdog==2.1.7
