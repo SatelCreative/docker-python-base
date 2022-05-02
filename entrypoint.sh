@@ -40,7 +40,7 @@ startapp() {
 
 developapp() {
   echo "Run app in DEVELOPMENT mode"
-  executeapp "watchmedo auto-restart --patterns=\"*.py;*.txt;*.yml\" --recursive uvicorn -- --host 0.0.0.0" $1
+  executeapp "uvicorn --reload --host 0.0.0.0 --port 8000" $1
 }
 
 
