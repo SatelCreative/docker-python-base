@@ -43,4 +43,4 @@ toml==0.10.2
 tomli==2.0.1
 typing_extensions==4.2.0
 uvicorn==0.17.6
-watchdog==2.1.7
+watchdog==2.1.8
