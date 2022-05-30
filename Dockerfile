@@ -1,7 +1,7 @@
 ARG IMAGE_VERSION=python:3.10.4-slim
 FROM $IMAGE_VERSION
 
-ARG REQUIREMENTS_VERSION=3.10
+
 
 # Create user and home directory
 # Create base directory
@@ -11,7 +11,6 @@ RUN apt-get update && apt-get upgrade -y &&\
 
 # Copy the needed files
 COPY entrypoint.sh test_suite.sh /python/
-COPY requirements_${REQUIREMENTS_VERSION}.txt /python/requirements.txt
 
 ENTRYPOINT ["/python/entrypoint.sh"]
 
@@ -22,7 +21,6 @@ RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod
     echo "#!/bin/bash\n/python/entrypoint.sh validatecode" >> /bin/validatecode && chmod a+x /bin/validatecode &&\
     echo "#!/bin/bash\n/python/entrypoint.sh validatecodeonce" >> /bin/validatecodeonce && chmod a+x /bin/validatecodeonce &&\
     echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests &&\
-    pip install -r /python/requirements.txt
 
 # Change users
 USER python
