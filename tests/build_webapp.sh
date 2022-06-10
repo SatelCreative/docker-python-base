@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
+
 docker build --target webapp_dev -t webapp_dev .
 
-#docker build --target webapp_prd -t webapp_prd .
+docker build --target webapp_prd -t webapp_prd .
 
-docker run -it webapp_dev validatecodeonce; STATUS1=$?
+docker run webapp_dev validatecodeonce; STATUS1=$?
 
-#exit $STATUS1
+exit $STATUS1
 
-# docker run -p 8000:8000 -it -d webapp_prd startapp
+docker run -p 8000:8000 webapp_prd startapp
 
-# sleep 5
+sleep 5
 
-# curl -L http://localhost:8000/; STATUS2=$?
+curl -L http://localhost:8000/; STATUS2=$?
 
-# exit $STATUS2
+exit $STATUS2
 
