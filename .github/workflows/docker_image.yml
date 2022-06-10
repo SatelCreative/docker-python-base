@@ -44,5 +44,7 @@ jobs:
           push: true
 
       - name: Build and test webapp with latest docker-python-base version
-        run: ./tests/build_webapp.sh
+        run: | 
+            chmod +x ./tests/build_webapp.sh
+            ./tests/build_webapp.sh
         shell: bash    
