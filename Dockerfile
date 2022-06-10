@@ -1,14 +1,13 @@
 ARG IMAGE_VERSION=python:3.10.4-slim
 FROM $IMAGE_VERSION
 
-
-
 # Create user and home directory
 # Create base directory
-RUN apt-get update && apt-get upgrade -y &&\
-    useradd -u 1000 -ms /bin/bash -d /home/python python &&\
-    mkdir -p /python && chown python:nogroup /python
+RUN apt-get update && apt-get upgrade -y \
+    && useradd -u 1000 -ms /bin/bash -d /home/python python \
+    && mkdir -p /python && chown python:nogroup /python
 
+#RUN pip install uvicorn==0.17.6
 # Copy the needed files
 COPY entrypoint.sh test_suite.sh /python/
 
@@ -16,12 +15,11 @@ ENTRYPOINT ["/python/entrypoint.sh"]
 
 # Add convenient aliases
 # Install python packages
-RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod a+x /bin/startapp &&\
-    echo "#!/bin/bash\n/python/entrypoint.sh developapp" >> /bin/developapp && chmod a+x /bin/developapp &&\
-    echo "#!/bin/bash\n/python/entrypoint.sh validatecode" >> /bin/validatecode && chmod a+x /bin/validatecode &&\
-    echo "#!/bin/bash\n/python/entrypoint.sh validatecodeonce" >> /bin/validatecodeonce && chmod a+x /bin/validatecodeonce &&\
-    echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests &&\
-
+RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod a+x /bin/startapp \
+    && echo "#!/bin/bash\n/python/entrypoint.sh developapp" >> /bin/developapp && chmod a+x /bin/developapp \
+    && echo "#!/bin/bash\n/python/entrypoint.sh validatecode" >> /bin/validatecode && chmod a+x /bin/validatecode \
+    && echo "#!/bin/bash\n/python/entrypoint.sh validatecodeonce" >> /bin/validatecodeonce && chmod a+x /bin/validatecodeonce \
+    && echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests
 # Change users
 USER python
 
