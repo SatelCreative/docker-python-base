@@ -38,7 +38,7 @@ jobs:
           context: .
           # Note: tags has to be all lower-case
           tags: |
-              satel/python-base:${{env.RELEASE_VERSION}}
+              5061011/python-base:${{env.RELEASE_VERSION}}
           build-args: |
               IMAGE_VERSION=python:3.10.4-slim
           push: true
