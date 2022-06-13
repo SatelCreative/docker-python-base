@@ -1,6 +1,8 @@
 
+ARG IMAGE_VERSION=satel/python-base:202206-rc2
+
 # DEV image
-FROM satel/python-base:202206-rc1 AS webapp_dev
+FROM $IMAGE_VERSION AS webapp_dev
 
 # Copy the files for the server
 COPY ./ /python/app
@@ -16,7 +18,7 @@ RUN pip install -r /python/app/requirements.txt
 
 
 # PRD image 
-FROM satel/python-base:202206-rc1 AS webapp_prd
+FROM $IMAGE_VERSION AS webapp_prd
  
 COPY ./ /python/app
 
