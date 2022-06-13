@@ -6,7 +6,7 @@ docker build --target webapp_prd -t webapp_prd .
 
 docker run webapp_dev validatecodeonce; STATUS1=$?
 
-docker run -p 8000:8000 webapp_prd startapp
+docker run -p 8000:8000 -d webapp_prd startapp
 
 sleep 5
 
