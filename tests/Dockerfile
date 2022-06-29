@@ -1,35 +1,19 @@
+ARG IMAGE_VERSION=satel/python-base:latest
 
-ARG IMAGE_VERSION=satel/python-base:202206-rc2
+# 1. Export the requirements file from poetry
+FROM $IMAGE_VERSION AS requirements-stage
 
-# DEV image
-FROM $IMAGE_VERSION AS webapp_dev
+RUN pip install poetry 
+COPY ./pyproject.toml ./poetry.lock* /python/app/
+
+# Generate the requirement file 
+ARG DEVFLAG=""
+RUN poetry export -f requirements.txt --output /python/app/requirements.txt $DEVFLAG --without-hashes
+
+# 2. Build the image we want using the requirements file from the first stage
+FROM $IMAGE_VERSION
 
 # Copy the files for the server
+COPY --from=requirements-stage /tmp/requirements.txt /app/requirements.txt
+
 COPY ./ /python/app
-
-RUN pip install poetry 
-
-COPY ./pyproject.toml ./poetry.lock* /python/app/
-
-# Generate the requirment file 
-RUN poetry export -f requirements.txt --output /python/app/requirements.txt --dev --without-hashes
-
-RUN pip install -r /python/app/requirements.txt
-
-
-# PRD image 
-FROM $IMAGE_VERSION AS webapp_prd
- 
-COPY ./ /python/app
-
-RUN pip install poetry 
-
-COPY ./pyproject.toml ./poetry.lock* /python/app/
-
-RUN poetry export -f requirements.txt --output /python/app/requirements.txt --without-hashes
-
-RUN pip install -r /python/app/requirements.txt
-
-USER root
-
-RUN apt-get install -y curl
