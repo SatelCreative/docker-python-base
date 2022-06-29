@@ -4,6 +4,7 @@ FROM $IMAGE_VERSION
 # Create user and home directory
 # Create base directory
 RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y curl \
     && useradd -u 1000 -ms /bin/bash -d /home/python python \
     && mkdir -p /python && chown python:nogroup /python
 
