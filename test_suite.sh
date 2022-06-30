@@ -3,21 +3,7 @@
 REPORTS_FOLDER="/python/reports/"
 SECTION_PREFIX="\n#########"
 
-help() {
-  echo "Help Menu"
-  echo
-  echo "Syntax: validatecodeonce [reports] [-h|]"
-  echo
-  echo "Positional arguments:"
-  echo "reports    Save test results in ${REPORTS_FOLDER}".
-  echo
-  echo "Options:"
-  echo "h    Print this help menu."
-  echo "k    Invokes Pytest option -k to run specific tests based on a substring match to the test name."
-  echo
-}
-
-while getopts ":h:k:" option; do
+while getopts ":k:" option; do
   case $option in
     h)
       help
