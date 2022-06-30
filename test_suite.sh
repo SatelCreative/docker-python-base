@@ -5,9 +5,6 @@ SECTION_PREFIX="\n#########"
 
 while getopts ":k:" option; do
   case $option in
-    h)
-      help
-      exit;;
     k)
       SPECIFIC_TESTS="-k ${OPTARG}"
   esac
