@@ -9,8 +9,7 @@ case $1 in
     ;;
 
     validate)
-        # docker run docker-python-base validatecodeonce -h
-        docker run docker-python-base validatecodeonce -k new
+        docker run docker-python-base validatecodeonce
     ;;
 
     cli)
