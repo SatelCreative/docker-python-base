@@ -19,6 +19,7 @@ checkuser() {
   fi
 }
 
+
 reportvalidation() {
   if [ -z "$1" ]
   then
