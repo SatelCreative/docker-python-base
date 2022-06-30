@@ -3,6 +3,29 @@
 REPORTS_FOLDER="/python/reports/"
 SECTION_PREFIX="\n#########"
 
+help() {
+  echo "Help Menu"
+  echo
+  echo "Syntax: validatecodeonce [reports] [-h|]"
+  echo
+  echo "Positional arguments:"
+  echo "reports    Save test results in ${REPORTS_FOLDER}".
+  echo
+  echo "Options:"
+  echo "h    Print this help menu."
+  echo "k    Invokes Pytest option -k to run specific tests based on a substring match to the test name."
+  echo
+}
+
+while getopts ":h:k:" option; do
+  case $option in
+    h)
+      help
+      exit;;
+    k)
+      SPECIFIC_TESTS="-k ${OPTARG}"
+  esac
+done
 
 checkuser() {
   WHOAMI=`whoami`
@@ -12,7 +35,6 @@ checkuser() {
     echo "Use the instruction \"USER python\" in your Dockerfile"
   fi
 }
-
 
 reportvalidation() {
   if [ -z "$1" ]
@@ -35,7 +57,7 @@ then
 fi
 
 echo -ne "$SECTION_PREFIX RUN TESTS:\n\n"
-python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS; STATUS1=$?
+python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS $SPECIFIC_TESTS; STATUS1=$?
 
 echo -ne "$SECTION_PREFIX CHECK DOCKER USER IS PYTHON: "
 USEROUT=`checkuser`
