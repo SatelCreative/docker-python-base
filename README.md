@@ -136,8 +136,7 @@ code change.
 This can be used for CI/CD purposes since it generates report files in the `/python/reports`
 folder.
 
-Options:
-
+Options:\
 `-h`  Print help menu.\
 `-k`  Invoke Pytest option `-k` to run specific tests based on a substring match to the test name.
 
