@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker build --build-arg "--dev" -t webapp_dev .
+docker build --build-arg DEVFLAG=--dev -t webapp_dev .
 
 docker build -t webapp_prd .
 
