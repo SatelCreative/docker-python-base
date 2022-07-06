@@ -7,13 +7,13 @@ RUN pip install poetry
 COPY ./pyproject.toml ./poetry.lock* ./
 
 # Generate the requirement file 
-ARG DEVFLAG=""
+ARG DEVFLAG
 RUN poetry export -f requirements.txt --output /tmp/requirements.txt $DEVFLAG --without-hashes
 
 # 2. Build the image we want using the requirements file from the first stage
 FROM $IMAGE_VERSION
 
 # Copy the files for the server
-COPY --from=requirements-stage /tmp/requirements.txt /app/requirements.txt
-
+COPY --from=requirements-stage /tmp/requirements.txt /python/app/requirements.txt
+RUN pip install -r /python/app/requirements.txt 
 COPY ./ /python/app
