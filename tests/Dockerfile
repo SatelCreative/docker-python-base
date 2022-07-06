@@ -1,14 +1,14 @@
 ARG IMAGE_VERSION=satel/python-base:latest
 
 # 1. Export the requirements file from poetry
-FROM $IMAGE_VERSION AS requirements-stage
+FROM python:3.10.5-slim AS requirements-stage
 
 RUN pip install poetry 
-COPY ./pyproject.toml ./poetry.lock* /python/app/
+COPY ./pyproject.toml ./poetry.lock* ./
 
 # Generate the requirement file 
 ARG DEVFLAG=""
-RUN poetry export -f requirements.txt --output /python/app/requirements.txt $DEVFLAG --without-hashes
+RUN poetry export -f requirements.txt --output /tmp/requirements.txt $DEVFLAG --without-hashes
 
 # 2. Build the image we want using the requirements file from the first stage
 FROM $IMAGE_VERSION
