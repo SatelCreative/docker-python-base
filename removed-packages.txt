@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+loguru
+# Dev dependencies below
+watchdog pyyaml argh
+mypy mypy-extensions
+pytest pytest-cov
+pytest-mock
+pytest-asyncio
+nest-asyncio
+flake8
+isort
+flake8-isort
+flake8-quotes
+flake8-print
+black
+interrogate
