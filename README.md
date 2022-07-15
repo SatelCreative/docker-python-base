@@ -15,7 +15,7 @@ one of 3 cases based on the parameter you pass in:
 2. `./dev.sh run` runs the main application.
 3. `./dev.sh cli` drops you into the cli for the image
 
-## :hourglass_flowing_sand: Migration to version > 202205
+## :hourglass_flowing_sand: Migration from version 202205 to above
 
 Starting with the version 202207, the docker python base does not contain
 any preinstalled python packages. It is now just providing a folder structure
