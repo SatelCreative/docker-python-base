@@ -8,7 +8,6 @@ RUN apt-get update && apt-get upgrade -y \
     && useradd -u 1000 -ms /bin/bash -d /home/python python \
     && mkdir -p /python && chown python:nogroup /python
 
-#RUN pip install uvicorn==0.17.6
 # Copy the needed files
 COPY entrypoint.sh test_suite.sh /python/
 
