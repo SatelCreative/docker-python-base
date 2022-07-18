@@ -1,7 +1,7 @@
 # This is a dev file for testing the changes to this repo
 docker build . -t satel/python-base:latest
 cd tests/
-docker build . -t docker-python-base
+docker build . --build-arg DEVFLAG=--dev -t docker-python-base
 
 case $1 in
     run)
