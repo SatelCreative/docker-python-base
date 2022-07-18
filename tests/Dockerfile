@@ -4,7 +4,7 @@ ARG IMAGE_VERSION=satel/python-base:latest
 FROM python:3.10.5-slim AS requirements-stage
 
 RUN pip install poetry 
-COPY ./pyproject.toml ./poetry.lock* ./
+COPY ./pyproject.toml ./poetry.lock ./
 
 # Generate the requirement file 
 ARG DEVFLAG
