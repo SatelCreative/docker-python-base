@@ -62,8 +62,6 @@ else
   echo "$BLACKOUT"
 fi
 
-echo
-
 echo -ne "$SECTION_PREFIX CHECK DOCSTRINGS: "
 INTERROGATEOUT=`interrogate`
 STATUS5=$?
