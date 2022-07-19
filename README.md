@@ -15,25 +15,20 @@ one of 3 cases based on the parameter you pass in:
 2. `./dev.sh run` runs the main application.
 3. `./dev.sh cli` drops you into the cli for the image
 
-## :hourglass_flowing_sand: Migration to version 4
+## :hourglass_flowing_sand: Migration from version 202205 to above
 
-The version 4 comes with significant changes:
+Starting with the version 202207, the docker python base does not contain
+any preinstalled python packages. It is now just providing a folder structure
+with adequate permissions for the python user, and a standard test suite.
 
-* The docker base image was changed from alpine to slim buster
-    * All the `apk add` commands need to be replaced with equivalent `apt-get` commands
-    * slim buster has more base packages such as bash so probably less installation
-      of system packages is needed
-* The entrypoint now provides standard commands to run and test the webapp
-    * No `CMD` is necessary for production as `startapp` is the default
-    * In development, run the `developapp` command
-    * See below for testing
-* A `config.sh` is expected where environment variables for configuration purposes
-  can be defined
-* The `requirements.txt` has been reduced to the base and development python packages
-    * Base packages such as FastAPI, pydantic, loguru, ...
-    * Development pacakages such as watchmedo, pytest, mypy, ...
-    * Therefore you need to add to your requirements file packages such as pandas
-      that were included in this image in versions prior to 4
+As a consequence upgrading to version 202207 and latest requires to
+add the packages that used to be provided by the docker python base image.
+The list of packages in listed in the
+[removed-packages.txt](./removed-packages.txt) file.
+
+The docker python base test image uses now poetry as it is the preferred
+way to manage dependencies at Satel. It can be used as an example
+on how to use poetry while building a python app image.
 
 ## :open_file_folder: Folder structure
 
@@ -51,19 +46,11 @@ such as the `entrypoint.sh`. Then the subfolders organize the app files:
 
 1. Go to docker hub to get the latest patch version for
     the [python docker image](https://hub.docker.com/_/python/)
-2. Then 3 files need to be edited with the latest python minor or patch versions:
-    1. `docker-compose.generate_requirements.yml` to generate the requirements files.
+2. Then 2 files need to be edited with the latest python minor or patch versions:
     1. `.github/workflows/docker_image.yml` to build and push the right images to docker hub.
-    1. `Dockerfile` to change the default base image version. This is used only for testing
-       while developing but better to keep it up to date.
-
-### Upgrade the requirements files
-
-Rather simple. Just run the following command at the root of the repo:
-
-```bash
-docker-compose -f docker-compose.generate_requirements.yml up
-```
+    1. `Dockerfile` at the root (not the one in `/tests`) to change the default
+       base image version. This is used only for testing while developing but
+       better to keep it up to date.
 
 ## :keyboard: Commands
 
