@@ -137,8 +137,14 @@ This can be used for CI/CD purposes since it generates report files in the `/pyt
 folder.
 
 Options:\
-`-h`  Print help menu.\
+`-h`  Print help menu.
+```
+validatecodeonce -h
+```
 `-k`  Invoke Pytest option `-k` to run specific tests based on a substring match to the test name.
+```
+validatecodeonce -k test_get_products
+```
 
 ### `runtests` (DEPRECATED)
 
