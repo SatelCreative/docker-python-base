@@ -15,12 +15,12 @@ checkuser() {
 
 
 reportvalidation() {
-  if [ -z "$1" ]
+  if [ "$1" -eq 0 ]
   then
     echo "OK"
   else
     echo -e "\e[1m\e[91mFAILED\e[21m\e[39m"
-    echo "$1"
+    echo "$2"
   fi
 }
 
@@ -39,15 +39,18 @@ python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_RE
 
 echo -ne "$SECTION_PREFIX CHECK DOCKER USER IS PYTHON: "
 USEROUT=`checkuser`
-reportvalidation "$USEROUT"; STATUS2=$?
+STATUS2=$?
+reportvalidation "$STATUS2" "$USEROUT"
 
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
 MYPYOUT=`mypy --cache-dir /home/python --no-error-summary . $MYPY_REPORTS`
-reportvalidation "$MYPYOUT"; STATUS3=$?
+STATUS3=$?
+reportvalidation "$STATUS3" "$MYPYOUT"
 
 echo -ne "$SECTION_PREFIX CHECK LINTING: "
 FLAKE8OUT=`flake8`
-reportvalidation "$FLAKE8OUT"; STATUS4=$?
+STATUS4=$?
+reportvalidation "$STATUS4" "$FLAKE8OUT"
 
 echo -ne "$SECTION_PREFIX CHECK FORMATTING: "
 BLACKOUT=`black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS5=$?
@@ -59,11 +62,10 @@ else
   echo "$BLACKOUT"
 fi
 
-echo
-
 echo -ne "$SECTION_PREFIX CHECK DOCSTRINGS: "
 INTERROGATEOUT=`interrogate`
-reportvalidation "$INTERROGATEOUT"; STATUS5=$?
+STATUS5=$?
+reportvalidation "$STATUS5" "$INTERROGATEOUT"
 
 if [[ $1 == "reports" ]]
 then
@@ -72,5 +74,5 @@ then
   echo
 fi
 
-TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4 + STATUS5 + STATUS6))
+TOTAL=$((STATUS1 + STATUS2 + STATUS3 + STATUS4 + STATUS5))
 exit $TOTAL
