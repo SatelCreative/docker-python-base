@@ -48,8 +48,9 @@ such as the `entrypoint.sh`. Then the subfolders organize the app files:
     the [python docker image](https://hub.docker.com/_/python/)
 2. Then 2 files need to be edited with the latest python minor or patch versions:
     1. `.github/workflows/docker_image.yml` to build and push the right images to docker hub.
-    1. `Dockerfile` to change the default base image version. This is used only for testing
-       while developing but better to keep it up to date.
+    1. `Dockerfile` at the root (not the one in `/tests`) to change the default
+       base image version. This is used only for testing while developing but
+       better to keep it up to date.
 
 ## :keyboard: Commands
 
