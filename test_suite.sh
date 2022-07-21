@@ -3,6 +3,12 @@
 REPORTS_FOLDER="/python/reports/"
 SECTION_PREFIX="\n#########"
 
+while getopts ":k:" option; do
+  case $option in
+    k)
+      SPECIFIC_TESTS="-k ${OPTARG}"
+  esac
+done
 
 reportvalidation() {
   if [ -z "$1" ]
@@ -26,7 +32,7 @@ fi
 
 
 echo -ne "$SECTION_PREFIX RUN TESTS:\n\n"
-python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS; STATUS1=$?
+python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS $SPECIFIC_TESTS; STATUS1=$?
 
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
 MYPYOUT=`mypy --no-error-summary . $MYPY_REPORTS`

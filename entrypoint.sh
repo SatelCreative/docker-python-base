@@ -52,10 +52,30 @@ validatecode() {
 }
 
 validatecodeonce() {
+  help() {
+    echo
+    echo "Usage: validatecodeonce [-h|k]"
+    echo
+    echo "Trigger a single run of code validation."
+    echo
+    echo "Options:"
+    echo "h    Print this help menu."
+    echo "k    Invoke Pytest option -k to run specific tests based on a substring match to the test name."
+    echo
+  }
+
+  while getopts ":h" option; do
+    case $option in
+      h)
+        help
+        exit;;
+    esac
+  done
+
   echo -e "\nTriggering single run of code validation."
   
   loadconfig
-  ../test_suite.sh reports
+  ../test_suite.sh $@ reports
 }
 
 
