@@ -45,10 +45,30 @@ developapp() {
 
 
 validatecode() {
+  help() {
+    echo
+    echo "Usage: validatecode [-h|k]"
+    echo
+    echo "Automatically run code validation whenever the code changes."
+    echo
+    echo "Options:"
+    echo "h    Print this help menu."
+    echo "k    Invoke Pytest option -k to run specific tests based on a substring match to the test name."
+    echo
+  }
+
+  while getopts ":h" option; do
+    case $option in
+      h)
+        help
+        exit;;
+    esac
+  done
+
   echo -e "\nREADY TO RUN THE CODE VALIDATION SUITE\nSave a python file to trigger the checks."
-  
+
   loadconfig
-  watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh" --drop .
+  watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh \$@" --drop .
 }
 
 validatecodeonce() {
