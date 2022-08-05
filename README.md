@@ -128,6 +128,16 @@ plugin.
 This code validation command executes the `/python/test_suite.sh` script which can
 be overwritten with custom code validation.
 
+Options:\
+`-h`  Print help menu.
+```
+validatecode -h
+```
+`-k`  Invoke Pytest option `-k` to run specific tests based on a substring match to the test name.
+```
+validatecode -k test_get_products
+```
+
 ### `validatecodeonce`
 
 Same as `validatecode` but executed once rather than continously running on
