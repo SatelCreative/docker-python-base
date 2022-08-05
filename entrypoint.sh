@@ -66,7 +66,6 @@ validatecode() {
   done
 
   echo -e "\nREADY TO RUN THE CODE VALIDATION SUITE\nSave a python file to trigger the checks."
-
   loadconfig
   watchmedo shell-command --patterns="*.py;*.txt" --recursive --command="/python/test_suite.sh \$@" --drop .
 }
