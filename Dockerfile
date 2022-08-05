@@ -15,11 +15,11 @@ ENTRYPOINT ["/python/entrypoint.sh"]
 
 # Add convenient aliases
 # Install python packages
-RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp" >> /bin/startapp && chmod a+x /bin/startapp \
-    && echo "#!/bin/bash\n/python/entrypoint.sh developapp" >> /bin/developapp && chmod a+x /bin/developapp \
-    && echo "#!/bin/bash\n/python/entrypoint.sh validatecode" >> /bin/validatecode && chmod a+x /bin/validatecode \
+RUN echo "#!/bin/bash\n/python/entrypoint.sh startapp \$@" >> /bin/startapp && chmod a+x /bin/startapp \
+    && echo "#!/bin/bash\n/python/entrypoint.sh developapp \$@" >> /bin/developapp && chmod a+x /bin/developapp \
+    && echo "#!/bin/bash\n/python/entrypoint.sh validatecode \$@" >> /bin/validatecode && chmod a+x /bin/validatecode \
     && echo "#!/bin/bash\n/python/entrypoint.sh validatecodeonce \$@" >> /bin/validatecodeonce && chmod a+x /bin/validatecodeonce \
-    && echo "#!/bin/bash\n/python/entrypoint.sh runtests" >> /bin/runtests && chmod a+x /bin/runtests
+    && echo "#!/bin/bash\n/python/entrypoint.sh runtests \$@" >> /bin/runtests && chmod a+x /bin/runtests
 # Change users
 USER python
 
