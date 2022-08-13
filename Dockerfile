@@ -6,7 +6,8 @@ FROM $IMAGE_VERSION
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y curl \
     && useradd -u 1000 -ms /bin/bash -d /home/python python \
-    && mkdir -p /python && chown python:nogroup /python
+    && mkdir -p /python && chown python:nogroup /python \
+    && pip install requests
 
 # Copy the needed files
 COPY entrypoint.sh test_suite.sh /python/
