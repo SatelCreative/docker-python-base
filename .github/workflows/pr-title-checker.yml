@@ -10,8 +10,9 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
-    steps:
+     runs-on: 
+        - self-hosted
+     steps:
       - uses: SatelCreative/pr-title-gitmoji-check@1.0.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
