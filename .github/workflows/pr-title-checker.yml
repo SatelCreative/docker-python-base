@@ -11,7 +11,7 @@ on:
 jobs:
   check:
      runs-on: 
-        - cosmicray
+        - self-hosted
      steps:
       - uses: SatelCreative/pr-title-gitmoji-check@1.0.1
         with:
