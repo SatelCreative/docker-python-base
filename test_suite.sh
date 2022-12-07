@@ -35,7 +35,7 @@ then
   MYPY_REPORTS="--junit-xml ${REPORTS_FOLDER}typing.xml"
   if [ -f ./coverage.conf ];
   then
-    $covconf="--cov-config ./coverage.conf"
+    covconf="--cov-config ./coverage.conf"
   fi
   PYTEST_REPORTS="--junitxml ${REPORTS_FOLDER}unittesting.xml $covconf --cov-report xml:${REPORTS_FOLDER}coverage.xml"
 fi
