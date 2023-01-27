@@ -38,7 +38,7 @@ startapp() {
   export PATH=$PATH:/home/python/bin/uvicorn
   echo $PATH
   whereis uvicorn
-  executeapp "uvicorn --host 0.0.0.0 --port 8000" $1
+  executeapp "python -m uvicorn --host 0.0.0.0 --port 8000" $1
 }
 
 
