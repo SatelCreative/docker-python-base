@@ -34,7 +34,7 @@ executeapp() {
 
 startapp() {
 
-  echo "Run app in PRODUCTION mode"
+  echo "Run app in PRODUCTION mode and test uvicorn"
   echo $PATH
   which uvicorn
   executeapp "uvicorn --host 0.0.0.0 --port 8000" $1
