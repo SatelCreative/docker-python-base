@@ -31,6 +31,30 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV    
       
+      - name: Build image and push python 3.8 version to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: .
+          # Note: tags has to be all lower-case
+          tags: |
+              satel/python-base:${{env.RELEASE_VERSION}}-python3.8
+          build-args: |
+              IMAGE_VERSION=python:3.8.13-slim
+          push: true
+          
+      - name: Build image and push python 3.9 version to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: .
+          # Note: tags has to be all lower-case
+          tags: |
+              satel/python-base:${{env.RELEASE_VERSION}}-python3.9
+          build-args: |
+              IMAGE_VERSION=python:3.9.12-slim
+          push: true
+          
       - name: Build image and push python 3.10 version to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -38,7 +62,7 @@ jobs:
           context: .
           # Note: tags has to be all lower-case
           tags: |
-              satel/python-base:${{env.RELEASE_VERSION}}
+              satel/python-base:${{env.RELEASE_VERSION}}-python3.10
           build-args: |
               IMAGE_VERSION=python:3.10.4-slim
           push: true
