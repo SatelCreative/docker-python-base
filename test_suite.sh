@@ -49,17 +49,17 @@ STATUS2=$?
 reportvalidation "$STATUS2" "$USEROUT"
 
 echo -ne "$SECTION_PREFIX CHECK TYPING: "
-MYPYOUT=`mypy --cache-dir /home/python --no-error-summary . $MYPY_REPORTS`
+MYPYOUT=`poetry run mypy --cache-dir /home/python --no-error-summary . $MYPY_REPORTS`
 STATUS3=$?
 reportvalidation "$STATUS3" "$MYPYOUT"
 
 echo -ne "$SECTION_PREFIX CHECK LINTING: "
-FLAKE8OUT=`flake8`
+FLAKE8OUT=`poetry run flake8 .`
 STATUS4=$?
 reportvalidation "$STATUS4" "$FLAKE8OUT"
 
 echo -ne "$SECTION_PREFIX CHECK FORMATTING: "
-BLACKOUT=`black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS5=$?
+BLACKOUT=`poetry run black --skip-string-normalization --line-length 99 ./ --check 2>&1`; STATUS5=$?
 if [[ $BLACKOUT == "All done!"* ]]
 then
   echo "OK"
@@ -69,7 +69,7 @@ else
 fi
 
 echo -ne "$SECTION_PREFIX CHECK DOCSTRINGS: "
-INTERROGATEOUT=`interrogate`
+INTERROGATEOUT=`poetry interrogate`
 STATUS5=$?
 reportvalidation "$STATUS5" "$INTERROGATEOUT"
 
