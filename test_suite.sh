@@ -41,7 +41,7 @@ then
 fi
 
 echo -ne "$SECTION_PREFIX RUN TESTS:\n\n"
-python -m pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS $SPECIFIC_TESTS; STATUS1=$?
+poetry run pytest -vv --durations=3 --cov ./ --cov-report term-missing $PYTEST_REPORTS $SPECIFIC_TESTS; STATUS1=$?
 
 echo -ne "$SECTION_PREFIX CHECK DOCKER USER IS PYTHON: "
 USEROUT=`checkuser`
@@ -69,7 +69,7 @@ else
 fi
 
 echo -ne "$SECTION_PREFIX CHECK DOCSTRINGS: "
-INTERROGATEOUT=`poetry interrogate`
+INTERROGATEOUT=`poetry run interrogate`
 STATUS5=$?
 reportvalidation "$STATUS5" "$INTERROGATEOUT"
 
